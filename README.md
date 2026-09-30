@@ -8,7 +8,7 @@ a landing page that lists every report, and one slide viewer per report.
 
 | Report | Date | What it covers |
 |---|---|---|
-| [`enterprise-ai-2026`](reports/enterprise-ai-2026) | 30 Sep 2026 | Enterprise AI adoption, failure and forecasts. 46 slides, 94 numbered sources. Cross-industry, with emphasis on the EU and Germany. For CTOs and CAIOs, readable by a CFO. Sources: [SOURCES.md](reports/enterprise-ai-2026/SOURCES.md) |
+| [`enterprise-ai-2026`](reports/enterprise-ai-2026) | 30 Sep 2026 | Enterprise AI adoption, failure and forecasts. 46 slides, 94 numbered sources. Cross-industry, with emphasis on the EU and Germany. Written for a non-technical audience. Sources: [SOURCES.md](reports/enterprise-ai-2026/SOURCES.md) |
 
 ## How it works
 
@@ -76,6 +76,13 @@ is informational for now). `pages.yml` only deploys `main`.
   name plus number, and the source slides list number, publisher, first slide and link.
 * Colour scheme for forecast checks: green = came as predicted, yellow = not yet but on
   track, red = missed or false, grey = cannot be checked.
+
+## Fonts and licences
+
+The slides use IBM Plex Sans and Source Serif 4. Both are free under the SIL Open Font License 1.1
+and are self-hosted from `assets/fonts/` together with their licence files, so the published pages
+make no requests to Google or any other third party. Only add fonts whose licence allows
+redistribution, and put their licence in `assets/fonts/`.
 
 ## Caveats
 
