@@ -1,0 +1,102 @@
+{
+  "v": 4,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-09-30T12:00:00Z"
+  },
+  "lists": "css",
+  "title": "Enterprise AI: Adoption, Failure, Forecasts",
+  "order": [
+    "cover",
+    "summary",
+    "terms",
+    "terms2",
+    "terms3",
+    "adopt-def",
+    "funnel",
+    "eu",
+    "de",
+    "industry",
+    "agents",
+    "cases",
+    "cases-ok",
+    "dep",
+    "lockin",
+    "exit",
+    "gov",
+    "extremes",
+    "reg",
+    "past",
+    "open",
+    "open2",
+    "models",
+    "markov",
+    "lead1",
+    "lead2",
+    "media",
+    "media-de",
+    "media2",
+    "factors",
+    "causes",
+    "barriers",
+    "patterns",
+    "metrics",
+    "actions",
+    "caveats",
+    "src1",
+    "src2",
+    "src3",
+    "src4",
+    "src5",
+    "src6",
+    "src7",
+    "src8",
+    "src9",
+    "src10"
+  ],
+  "sections": {
+    "intro": {
+      "description": "Headline findings and plain-language terms.",
+      "start": "cover"
+    },
+    "adoption": {
+      "description": "How much AI is used, where and by whom.",
+      "start": "adopt-def"
+    },
+    "landscape": {
+      "description": "Real cases, dependency and lock-in costs, government extremes and regulation.",
+      "start": "cases"
+    },
+    "forecasts": {
+      "description": "Which predictions held and which models exist.",
+      "start": "past"
+    },
+    "voices": {
+      "description": "AI leaders’ forecasts against evidence, and how media cover AI.",
+      "start": "lead1"
+    },
+    "factors": {
+      "description": "What separates value from abandonment.",
+      "start": "factors"
+    },
+    "action": {
+      "description": "What to track, what to do, and how far to trust the numbers.",
+      "start": "metrics"
+    },
+    "refs": {
+      "description": "Sources.",
+      "start": "src1"
+    }
+  },
+  "faces": {
+    "source-serif-4": {
+      "family": "Source Serif 4",
+      "href": "https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap"
+    },
+    "ibm-plex-sans": {
+      "family": "IBM Plex Sans",
+      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    }
+  },
+  "designSystems": []
+}

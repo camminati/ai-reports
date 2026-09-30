@@ -1,0 +1,10 @@
+# GitLab Pages: builds the landing page and every report into public/
+pages:
+  image: python:3.12-slim
+  script:
+    - python tools/build.py --out public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
