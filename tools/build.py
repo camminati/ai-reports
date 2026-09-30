@@ -35,6 +35,40 @@ FALLBACK_FACES = [
 
 esc = html.escape
 
+# Fonts are self-hosted (assets/fonts, SIL Open Font License) so the pages make no requests to
+# Google and the slides render with the same metrics everywhere.
+FONT_DIR = ROOT / 'assets' / 'fonts'
+FONT_FILES = [
+    ('IBM Plex Sans', 400, 'normal', 'ibm-plex-sans-latin-400-normal.woff2'),
+    ('IBM Plex Sans', 500, 'normal', 'ibm-plex-sans-latin-500-normal.woff2'),
+    ('IBM Plex Sans', 600, 'normal', 'ibm-plex-sans-latin-600-normal.woff2'),
+    ('IBM Plex Sans', 400, 'italic', 'ibm-plex-sans-latin-400-italic.woff2'),
+    ('Source Serif 4', 400, 'normal', 'source-serif-4-latin-400-normal.woff2'),
+    ('Source Serif 4', 600, 'normal', 'source-serif-4-latin-600-normal.woff2'),
+    ('Source Serif 4', 700, 'normal', 'source-serif-4-latin-700-normal.woff2'),
+    ('Source Serif 4', 400, 'italic', 'source-serif-4-latin-400-italic.woff2'),
+]
+BUNDLED = {f[0] for f in FONT_FILES}
+
+
+def font_css(prefix):
+    return ''.join(
+        f"@font-face{{font-family:'{fam}';font-weight:{w};font-style:{st};font-display:swap;"
+        f"src:url({prefix}{fn}) format('woff2')}}\n" for fam, w, st, fn in FONT_FILES)
+
+
+# Defaults the slide format promises for text without inline values (h1 96/600/1.1, h2 64/600/1.15,
+# h3 44/600/1.2, p 32/400/1.4). font-size does not inherit into h1-h3 but does into p and li.
+SLIDE_BASE_CSS = (
+    "section{font-size:32px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}"
+    "section h1,section h2,section h3,section p,section ul,section ol{margin:0}"
+    "section h1{font-size:96px;font-weight:600;line-height:1.1;text-wrap:balance}"
+    "section h2{font-size:64px;font-weight:600;line-height:1.15;text-wrap:balance}"
+    "section h3{font-size:44px;font-weight:600;line-height:1.2;text-wrap:balance}"
+    "section p,section li{line-height:1.4}"
+    "section a{color:inherit;text-decoration:underline}"
+)
+
 
 def load_reports():
     reports = []
@@ -141,14 +175,15 @@ def build_viewer(rep, out_dir):
     for key, sec in sections.items():
         if sec['start'] in order:
             starts.append(order.index(sec['start']))
-            labels.append(key.replace('-', ' ').capitalize())
+            labels.append(meta.get('section_labels', {}).get(key, key.replace('-', ' ').capitalize()))
     pairs = sorted(zip(starts, labels))
     if not pairs or pairs[0][0] != 0:
         pairs.insert(0, (0, 'Start'))
     starts = [p[0] for p in pairs]
     options = ''.join(f'<option>{esc(l)}</option>' for _, l in pairs)
-    faces = [f['href'] for f in deck.get('faces', {}).values()] or FALLBACK_FACES
-    font_links = FONTS + ''.join(f'<link rel="stylesheet" href="{esc(h)}">' for h in faces)
+    extra = [f['href'] for f in deck.get('faces', {}).values()
+             if f.get('family') not in BUNDLED and f.get('href')]
+    font_links = (FONTS + ''.join(f'<link rel="stylesheet" href="{esc(h)}">' for h in extra)) if extra else ''
     title = esc(meta['title'])
     has_sources = (d / 'SOURCES.md').exists()
     src_link = '<a class="opt" href="SOURCES.md">Sources (md)</a>' if has_sources else ''
@@ -160,7 +195,7 @@ def build_viewer(rep, out_dir):
 <title>{title}</title>
 <meta name="description" content="{esc(meta.get('summary', ''))}">
 {font_links}
-<style>{VIEWER_CSS}</style>
+<style>{font_css('../fonts/')}{SLIDE_BASE_CSS}{VIEWER_CSS}</style>
 </head>
 <body>
 <div id="stage"><div id="frame">{''.join(slide_html)}</div></div>
@@ -249,8 +284,7 @@ def build_landing(reports, out):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AI reports</title>
 <meta name="description" content="Sourced research briefings on AI in the enterprise.">
-{FONTS}<link rel="stylesheet" href="{FALLBACK_FACES[0]}"><link rel="stylesheet" href="{FALLBACK_FACES[1]}">
-<style>{LANDING_CSS}</style>
+<style>{font_css('fonts/')}{LANDING_CSS}</style>
 </head>
 <body>
 <main class="wrap">
@@ -281,6 +315,7 @@ def main():
         build_viewer(r, out / r['slug'])
         print(f"built {r['slug']}: {len(r['deck']['order'])} slides")
     build_landing(reports, out)
+    shutil.copytree(FONT_DIR, out / 'fonts')
     (out / '.nojekyll').write_text('')
     print(f'site written to {out}')
 

@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 """Layout check for a report's slides (needs: pip install playwright && playwright install chromium).
 
-Usage: python tools/check_layout.py reports/<slug> [--stress 1.15]
+Usage: python tools/check_layout.py reports/<slug> [--stress 1.15] [--verbose]
 
 Renders every slide at 1920x1080 and reports
   * content that reaches the footer,
   * footer text that runs into the page number or off the slide,
   * horizontal overflow (anything right of x = 1795),
   * page numbers that are not sequential.
---stress widens footer text by a factor to allow for font differences
-(the checker uses fallback fonts unless the web fonts are reachable).
+--stress widens footer text by a factor as a safety margin. The checker loads the same
+self-hosted fonts and slide defaults as the published viewer.
 """
 import json, sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build  # shared font and slide-default CSS, so the check matches the published viewer
 
 JS = """(SC) => {
   const s = document.querySelector('section'); let content = 0, right = 0; const abs = [];
@@ -41,6 +44,8 @@ def main():
     stress = 1.15
     if '--stress' in args:
         i = args.index('--stress'); stress = float(args[i + 1]); del args[i:i + 2]
+    verbose = '--verbose' in args
+    args = [a for a in args if a != '--verbose']
     root = Path(args[0])
     order = json.loads((root / 'deck.json').read_text())['order']
     bad = 0
@@ -48,9 +53,14 @@ def main():
         b = p.chromium.launch(); pg = b.new_page(viewport={'width': 1920, 'height': 1080})
         for i, sid in enumerate(order, 1):
             html = (root / 'slides' / f'{sid}.html').read_text()
-            pg.set_content('<html><body style="margin:0"><style>*{margin:0;padding:0;box-sizing:border-box}'
-                           'section{position:relative;width:1920px;height:1080px;overflow:visible}aside{display:none}</style>'
-                           + html + '</body></html>')
+            page = (build.ROOT / 'assets' / '_check.html')
+            page.write_text('<html><body style="margin:0"><style>' + build.font_css('fonts/') + build.SLIDE_BASE_CSS
+                            + '*{margin:0;padding:0;box-sizing:border-box}'
+                            'section{position:relative;width:1920px;height:1080px;overflow:visible}aside{display:none}</style>'
+                            + html + '</body></html>', encoding='utf-8')
+            pg.goto(page.as_uri())
+            pg.evaluate('document.fonts.ready')
+            pg.wait_for_timeout(50)
             r = pg.evaluate(JS, stress)
             issues = []
             f, n = r['foot'], r['num']
@@ -60,9 +70,11 @@ def main():
                 if f['left'] + f['tw'] > 1920 - 64: issues.append('footer beyond slide edge')
                 if r['content'] > f['top'] - 12: issues.append(f"content bottom {r['content']} reaches footer")
             if n and sid != 'cover' and n['text'] != str(i): issues.append(f"page number {n['text']} != {i}")
+            if verbose: print(f"{i:>3} {sid}: content bottom {r['content']}")
             if issues:
                 bad += 1; print(f'{i:>3} {sid}: ' + '; '.join(issues))
         b.close()
+    (build.ROOT / 'assets' / '_check.html').unlink(missing_ok=True)
     print(f'{len(order)} slides checked, {bad} with issues')
     sys.exit(1 if bad else 0)
 
