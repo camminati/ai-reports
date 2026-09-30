@@ -57,6 +57,10 @@ repository has to be public for the site to be served.
 
 ## Checks
 
+On GitHub, `.github/workflows/ci.yml` runs on every pull request and branch push: it builds the
+site, checks that `SOURCES.md` matches the source slides, and runs the layout check (the layout job
+is informational for now). `pages.yml` only deploys `main`.
+
 * `python tools/check_layout.py reports/<slug>`: renders every slide with Playwright
   and flags text running into the footer, horizontal overflow and wrong page numbers
   (`pip install playwright && playwright install chromium`). It uses fallback fonts

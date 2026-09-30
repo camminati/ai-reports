@@ -16,7 +16,7 @@ Guidance for AI coding agents working in this repository.
   (slide order, sections, fonts), `slides/*.html` (one `<section>` per slide, 1920x1080, inline
   styles), `SOURCES.md` (generated).
 * `tools/build.py` builds the site (landing page plus one viewer per report) into `dist/`.
-* `.github/workflows/pages.yml` deploys to GitHub Pages and `.gitlab-ci.yml` to GitLab Pages,
+* `.github/workflows/ci.yml` checks branches and pull requests; `.github/workflows/pages.yml` deploys to GitHub Pages and `.gitlab-ci.yml` to GitLab Pages,
   both from the default branch.
 * `reports/enterprise-ai-2026/generators/` is an archive. Do not re-run it: the slide files are the
   source of truth and the old scripts would overwrite later edits.
