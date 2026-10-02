@@ -9,7 +9,7 @@ a landing page that lists every report, and one slide viewer per report.
 
 | Report | Date | What it covers |
 |---|---|---|
-| [`enterprise-ai-2026`](reports/enterprise-ai-2026) | 30 Sep 2026 | Enterprise AI adoption, failure and forecasts. 46 slides, 94 numbered sources. Cross-industry, with emphasis on the EU and Germany. Written for a non-technical audience. Sources: [SOURCES.md](reports/enterprise-ai-2026/SOURCES.md) |
+| [`enterprise-ai-2026`](reports/enterprise-ai-2026) | 30 Sep 2026 | Enterprise AI adoption, failure and forecasts. 46 slides, 94 numbered sources. Cross-industry, with emphasis on the EU and Germany. Written for a non-technical audience. Sources: [SOURCES.md](reports/enterprise-ai-2026/SOURCES.md). Podcast: [audio version](https://notebook.google.com/notebook/f4f7c80b-1dd4-48dc-8024-0552ea51267d/artifact/e487e380-774b-4fbc-b5fd-c5dbdc372acc?utm_source=nlm_web_share&utm_medium=google_oo&utm_campaign=art_share_1&utm_content=&utm_smc=nlm_web_share_google_oo_art_share_1_) |
 | [`enterprise-ai-talk-2026`](reports/enterprise-ai-talk-2026) | 2 Oct 2026 | 30-minute talk version of the report. 17 slides: four findings with numbers, five patterns as likely causes, five actions. Slides cite the full report instead of numbered sources. |
 
 ## How it works
