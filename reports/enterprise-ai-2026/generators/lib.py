@@ -1,5 +1,5 @@
 import html, json
-D='/tmp/claude-0/-home-claude/d83e9c40-3403-54e5-b4cb-d33f00f5ffd5/scratchpad/artifact-files/30f3ab63-14e0-49e5-9d25-52d5f6df0be8'
+D='/path/to/scratchpad/artifact-files/<artifact-id>'
 INK='#12202F';PAPER='#F6F3EC';PAPER2='#ECE6D8';CARD='#FFFDF8';LINE='#D9D2C0';MUTED='#4A5560';TEAL='#0B6E6B';AMBER='#A85A08';BAR_AMBER='#C9791B';AMBER_L='#F2B65C';TEAL_L='#6FCBC5';MUTED_D='#B9C4CE'
 SERIF="'Source Serif 4', Georgia, serif";SANS="'IBM Plex Sans', Arial, sans-serif"
 def e(t): return html.escape(t,quote=False)

@@ -1,5 +1,5 @@
 import json,re,html
-D='/tmp/claude-0/-home-claude/d83e9c40-3403-54e5-b4cb-d33f00f5ffd5/scratchpad/artifact-files/30f3ab63-14e0-49e5-9d25-52d5f6df0be8/project/'
+D='/path/to/scratchpad/artifact-files/<artifact-id>/project/'
 INK='#12202F';PAPER='#F6F3EC';PAPER2='#ECE6D8';CARD='#FFFDF8';LINE='#D9D2C0';MUTED='#4A5560';TEAL='#0B6E6B'
 SERIF="'Source Serif 4', Georgia, serif";SANS="'IBM Plex Sans', Arial, sans-serif"
 e=lambda t: html.escape(t,quote=False)

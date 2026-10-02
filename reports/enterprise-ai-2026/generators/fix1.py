@@ -1,5 +1,5 @@
 import re
-D='/tmp/claude-0/-home-claude/d83e9c40-3403-54e5-b4cb-d33f00f5ffd5/scratchpad/artifact-files/30f3ab63-14e0-49e5-9d25-52d5f6df0be8/project/slides/'
+D='/path/to/scratchpad/artifact-files/<artifact-id>/project/slides/'
 def sub(sid,old,new,count=1):
     f=D+sid+'.html'; s=open(f).read()
     n=s.count(old)

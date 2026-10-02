@@ -1,5 +1,5 @@
 import json,re,sys,html
-D='/tmp/claude-0/-home-claude/d83e9c40-3403-54e5-b4cb-d33f00f5ffd5/scratchpad/artifact-files/30f3ab63-14e0-49e5-9d25-52d5f6df0be8/project/'
+D='/path/to/scratchpad/artifact-files/<artifact-id>/project/'
 def vis(sid):
     h=open(D+'slides/'+sid+'.html').read()
     h=re.sub(r'<aside>.*?</aside>','',h,flags=re.S)

@@ -1,9 +1,9 @@
 import re,html,json
-D='/tmp/claude-0/-home-claude/d83e9c40-3403-54e5-b4cb-d33f00f5ffd5/scratchpad/artifact-files/30f3ab63-14e0-49e5-9d25-52d5f6df0be8/project/'
+D='/path/to/scratchpad/artifact-files/<artifact-id>/project/'
 order=json.load(open(D+'deck.json'))['order']
 def tx(s): return re.sub(r'\s+',' ',html.unescape(re.sub(r'<[^>]+>',' ',s)))
 ents=[]
-BK='/tmp/claude-0/-home-claude/d83e9c40-3403-54e5-b4cb-d33f00f5ffd5/scratchpad/project_bak_src/'
+BK='/path/to/scratchpad/project_bak_src/'
 for n in ['src1','src2','src3','src4','src5','src6','src7','src8','src9']:
     t=open(BK+'slides/'+n+'.html').read()
     body=re.sub(r'<aside>.*?</aside>','',t,flags=re.S)

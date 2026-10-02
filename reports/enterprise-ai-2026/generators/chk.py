@@ -1,6 +1,6 @@
 import json,sys,os
 from playwright.sync_api import sync_playwright
-D='/tmp/claude-0/-home-claude/d83e9c40-3403-54e5-b4cb-d33f00f5ffd5/scratchpad/artifact-files/30f3ab63-14e0-49e5-9d25-52d5f6df0be8/project/slides/'
+D='/path/to/scratchpad/artifact-files/<artifact-id>/project/slides/'
 ids=sys.argv[1:]
 with sync_playwright() as p:
     b=p.chromium.launch(executable_path='/opt/pw-browsers/chromium' if os.path.exists('/opt/pw-browsers/chromium') else None)
