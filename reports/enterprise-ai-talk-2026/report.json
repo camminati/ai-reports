@@ -1,0 +1,24 @@
+{
+  "title": "Enterprise AI: broad use, narrow value",
+  "summary": "A 30-minute talk: four findings on enterprise AI adoption and failure with the key numbers, five patterns as likely causes, and five actions. Companion to the full sourced report.",
+  "date": "2026-10-02",
+  "language": "en",
+  "audience": "30-minute talk",
+  "tags": [
+    "talk",
+    "AI adoption",
+    "findings",
+    "actions"
+  ],
+  "companion": "enterprise-ai-2026",
+  "section_labels": {
+    "intro": "Overview",
+    "use": "Finding 1: use",
+    "failure": "Finding 2: failure",
+    "forecasts": "Finding 3: forecasts",
+    "factors": "Finding 4: factors",
+    "causes": "Causes",
+    "actions": "Actions",
+    "close": "Caveats and close"
+  }
+}

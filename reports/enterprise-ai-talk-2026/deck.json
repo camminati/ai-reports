@@ -1,0 +1,73 @@
+{
+  "v": 4,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-02T08:00:00Z"
+  },
+  "lists": "css",
+  "title": "Enterprise AI: broad use, narrow value (30-minute talk)",
+  "order": [
+    "cover",
+    "agenda",
+    "funnel",
+    "europe",
+    "agents",
+    "failure",
+    "cases",
+    "forecasts",
+    "leaders",
+    "models",
+    "factors",
+    "reasons",
+    "patterns",
+    "actions",
+    "metrics",
+    "caveats",
+    "close"
+  ],
+  "sections": {
+    "intro": {
+      "description": "Title and overview.",
+      "start": "cover"
+    },
+    "use": {
+      "description": "Finding 1: use is broad, value is narrow.",
+      "start": "funnel"
+    },
+    "failure": {
+      "description": "Finding 2: failure means stopped pilots.",
+      "start": "failure"
+    },
+    "forecasts": {
+      "description": "Finding 3: forecasts and models.",
+      "start": "forecasts"
+    },
+    "factors": {
+      "description": "Finding 4: workflow redesign leads the factors.",
+      "start": "factors"
+    },
+    "causes": {
+      "description": "Five patterns as the most likely causes.",
+      "start": "reasons"
+    },
+    "actions": {
+      "description": "Five actions and six numbers to track.",
+      "start": "actions"
+    },
+    "close": {
+      "description": "Caveats and take-aways.",
+      "start": "caveats"
+    }
+  },
+  "faces": {
+    "source-serif-4": {
+      "family": "Source Serif 4",
+      "href": "https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap"
+    },
+    "ibm-plex-sans": {
+      "family": "IBM Plex Sans",
+      "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    }
+  },
+  "designSystems": []
+}
