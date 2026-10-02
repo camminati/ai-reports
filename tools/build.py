@@ -290,7 +290,7 @@ def build_landing(reports, out):
 <main class="wrap">
   <p class="eyebrow">Research briefings</p>
   <h1>AI reports</h1>
-  <p class="lede">Sourced briefings on how AI performs in practice. Every figure carries its source, date and definition, and each report ends with its full source list.</p>
+  <p class="lede">Sourced briefings on how AI performs in practice. The full report gives every figure its source, date and definition and ends with its source list; shorter talk versions point back to it.</p>
   <div class="list">{body}</div>
   <footer>Each report is a slide deck: arrow keys to move, N for notes, F for fullscreen, and the PDF button to print. Source code and how to add a report: see the repository README.</footer>
 </main>
